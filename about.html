@@ -321,11 +321,20 @@
     .legal-row dt { color: rgba(255,255,255,0.62); }
     .legal-row dd { margin: 0; color: var(--white); font-weight: 700; overflow-wrap: anywhere; }
     .legal-summary .text-link { color: var(--white); }
-    .conversation-dialog { width: min(calc(100% - 32px), 520px); padding: 0; border: 0; border-radius: 20px; background: var(--white); box-shadow: 0 30px 90px rgba(4,31,66,0.42); }
+    .conversation-dialog { width: min(calc(100% - 32px), 880px); padding: 0; border: 0; border-radius: 20px; background: var(--white); box-shadow: 0 30px 90px rgba(4,31,66,0.42); overflow: hidden; }
+    .dialog-grid { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); }
+    .dialog-aside { padding: clamp(30px, 5vw, 48px); background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 78%); color: var(--white); display: flex; flex-direction: column; gap: 14px; }
+    .dialog-eyebrow { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
+    .dialog-aside h2 { margin: 0; color: var(--white); font-size: clamp(1.6rem, 3.4vw, 2.15rem); }
+    .dialog-aside .dialog-intro { margin-bottom: 0; color: rgba(255,255,255,0.8); }
+    .dialog-contact { margin-top: auto; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.18); display: flex; flex-direction: column; gap: 6px; }
+    .dialog-contact a { color: var(--white); font-weight: 600; width: fit-content; border-bottom: 1px solid rgba(255,255,255,0.35); transition: border-color 0.18s ease; }
+    .dialog-contact a:hover { border-color: var(--white); }
+    .dialog-formwrap { position: relative; padding: clamp(30px, 5vw, 48px); }
+    .btn-block { width: 100%; justify-content: center; }
+    @media (max-width: 1120px) { .dialog-grid { grid-template-columns: 1fr; } }
     .conversation-dialog::backdrop { background: rgba(4,31,66,0.72); backdrop-filter: blur(4px); }
-    .dialog-inner { position: relative; padding: clamp(30px, 6vw, 50px); }
     .dialog-close { position: absolute; top: 14px; right: 14px; width: 42px; height: 42px; display: grid; place-items: center; border: 0; border-radius: 50%; background: var(--mist); color: var(--navy-deep); font-size: 1.5rem; cursor: pointer; }
-    .dialog-inner h2 { margin-bottom: 10px; font-size: clamp(1.75rem, 4vw, 2.45rem); }
     .dialog-intro { margin-bottom: 24px; color: var(--slate); }
     .form-row { margin-bottom: 17px; }
     .form-row label { display: block; margin-bottom: 7px; color: var(--navy-deep); font-weight: 700; }
@@ -406,7 +415,7 @@
 
     /* Final shared homepage header and footer shell */
     .site-header { position: fixed; inset: 0 0 auto; z-index: 200; min-height: var(--header-height); transition: background 0.2s ease, box-shadow 0.2s ease; }
-    .site-header.is-scrolled, .site-header.menu-active { background: rgba(255,255,255,0.98); box-shadow: 0 8px 30px rgba(4,31,66,0.12); backdrop-filter: blur(12px); }
+    .site-header.is-scrolled, .site-header.menu-active { background: rgba(255,255,255,0.98); box-shadow: 0 8px 30px rgba(4,31,66,0.12); } .site-header.is-scrolled:not(.menu-active) { backdrop-filter: blur(12px); }
     .header-inner { min-height: var(--header-height); display: flex; align-items: center; gap: 28px; }
     .brand { position: relative; width: 184px; height: 46px; flex: 0 0 auto; }
     .brand img { position: absolute; inset: 50% auto auto 0; max-height: 42px; width: auto; transform: translateY(-50%); transition: opacity 0.18s ease; }
@@ -832,10 +841,18 @@
 </div>
 </footer>
 <dialog aria-describedby="conversationIntro" aria-labelledby="conversationTitle" class="conversation-dialog" id="conversationDialog">
-<div class="dialog-inner">
-<button aria-label="Close enquiry form" class="dialog-close" id="dialogClose" type="button">×</button>
+<div class="dialog-grid">
+<aside class="dialog-aside">
+<span class="dialog-eyebrow">Enquiries</span>
 <h2 id="conversationTitle">Start a conversation</h2>
-<p class="dialog-intro" id="conversationIntro">Tell us who you are. We will route your enquiry to the right person.</p>
+<p class="dialog-intro" id="conversationIntro">Tell us who you are and what you are working on. Enquiries go directly to the programme team.</p>
+<div class="dialog-contact">
+<a href="mailto:contact@tri-impact.org">contact@tri-impact.org</a>
+<a href="tel:+911206253535">+91 120 6253535</a>
+</div>
+</aside>
+<div class="dialog-formwrap">
+<button aria-label="Close enquiry form" class="dialog-close" data-close-conversation="" id="dialogClose" type="button">×</button>
 <form id="conversationForm" novalidate="">
 <div class="form-row">
 <label for="conversationName">Name</label>
@@ -856,10 +873,11 @@
 <label for="conversationMessage">Message</label>
 <textarea class="form-control" id="conversationMessage" name="message" rows="4"></textarea>
 </div>
-<button class="btn btn-primary" type="submit">Send enquiry</button>
+<button class="btn btn-primary btn-block" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
 <p aria-live="polite" class="form-status" id="conversationStatus" role="status"></p>
 <p class="privacy-note">Tri-Impact uses these details only to respond to your enquiry.</p>
 </form>
+</div>
 </div>
 </dialog>
 <script>

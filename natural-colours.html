@@ -115,12 +115,7 @@
       min-height: var(--header-height);
       transition: background 0.2s ease, box-shadow 0.2s ease;
     }
-    .site-header.is-scrolled,
-    .site-header.menu-active {
-      background: rgba(255,255,255,0.98);
-      box-shadow: 0 8px 30px rgba(4,31,66,0.12);
-      backdrop-filter: blur(12px);
-    }
+    .site-header.is-scrolled, .site-header.menu-active { background: rgba(255,255,255,0.98); box-shadow: 0 8px 30px rgba(4,31,66,0.12); } .site-header.is-scrolled:not(.menu-active) { backdrop-filter: blur(12px); }
     .header-inner { min-height: var(--header-height); display: flex; align-items: center; gap: 28px; }
     .brand { position: relative; width: 184px; height: 46px; flex: 0 0 auto; }
     .brand img { position: absolute; inset: 50% auto auto 0; max-height: 42px; width: auto; transform: translateY(-50%); transition: opacity 0.18s ease; }
@@ -851,7 +846,7 @@
 </div>
 </aside>
 <div class="dialog-formwrap">
-<button aria-label="Close enquiry form" class="dialog-close" id="dialogClose" type="button">×</button>
+<button aria-label="Close enquiry form" class="dialog-close" data-close-conversation="" id="dialogClose" type="button">×</button>
 <form id="conversationForm" novalidate="">
 <div class="form-row">
 <label for="conversationName">Name</label>

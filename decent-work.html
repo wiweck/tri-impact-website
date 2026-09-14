@@ -234,7 +234,7 @@
 
   /* Shared header/nav/footer/dialog shell (verbatim pattern used sitewide) */
   .site-header { position: fixed; inset: 0 0 auto; z-index: 200; min-height: var(--header-height); transition: background 0.2s ease, box-shadow 0.2s ease; }
-  .site-header.is-scrolled, .site-header.menu-active { background: rgba(255,255,255,0.98); box-shadow: 0 8px 30px rgba(4,31,66,0.12); backdrop-filter: blur(12px); }
+  .site-header.is-scrolled, .site-header.menu-active { background: rgba(255,255,255,0.98); box-shadow: 0 8px 30px rgba(4,31,66,0.12); } .site-header.is-scrolled:not(.menu-active) { backdrop-filter: blur(12px); }
   .header-inner { min-height: var(--header-height); display: flex; align-items: center; gap: 28px; }
   .brand { position: relative; width: 184px; height: 46px; flex: 0 0 auto; }
   .brand img { position: absolute; inset: 50% auto auto 0; max-height: 42px; width: auto; transform: translateY(-50%); transition: opacity 0.18s ease; }
@@ -327,8 +327,12 @@
   .conversation-dialog { width: min(calc(100% - 32px), 880px); padding: 0; border: 0; border-radius: 20px; background: var(--white); box-shadow: 0 30px 90px rgba(4,31,66,0.42); }
   .conversation-dialog::backdrop { background: rgba(4,31,66,0.72); backdrop-filter: blur(4px); }
   .dialog-grid { display: grid; grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr); }
-  .dialog-aside { padding: clamp(30px, 4vw, 44px); background: var(--navy-deep); color: var(--white); }
-  .dialog-aside h2 { color: var(--white); font-size: clamp(1.5rem, 2.6vw, 2rem); margin-bottom: 12px; }
+  .dialog-aside { padding: clamp(30px, 5vw, 48px); background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 78%); color: var(--white); display: flex; flex-direction: column; gap: 14px; }
+  .dialog-eyebrow { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
+  .dialog-contact { margin-top: auto; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.18); display: flex; flex-direction: column; gap: 6px; }
+  .dialog-contact a { color: var(--white); font-weight: 600; width: fit-content; border-bottom: 1px solid rgba(255,255,255,0.35); transition: border-color 0.18s ease; }
+  .dialog-contact a:hover { border-color: var(--white); }
+  .dialog-aside h2 { margin: 0; color: var(--white); font-size: clamp(1.6rem, 3.4vw, 2.15rem); }
   .dialog-aside p { color: rgba(255,255,255,0.78); font-size: 0.95rem; margin-bottom: 18px; }
   .dialog-aside a { color: var(--white); text-decoration: underline; text-underline-offset: 4px; }
   .dialog-formwrap { position: relative; padding: clamp(30px, 4vw, 44px); }
@@ -798,38 +802,42 @@
 </div>
 </footer>
 
-<dialog class="conversation-dialog" id="conversationDialog" aria-labelledby="dialog-title">
+<dialog aria-describedby="conversationIntro" aria-labelledby="conversationTitle" class="conversation-dialog" id="conversationDialog">
 <div class="dialog-grid">
-<div class="dialog-aside">
-<h2 id="dialog-title">Start a conversation</h2>
-<p>For institutional funders, CSR teams and manufacturers exploring a Decent Work partnership.</p>
-<p><a href="mailto:contact@tri-impact.org">contact@tri-impact.org</a><br/><a href="tel:+911206253535">+91 120 6253535</a></p>
+<aside class="dialog-aside">
+<span class="dialog-eyebrow">Enquiries</span>
+<h2 id="conversationTitle">Start a conversation</h2>
+<p class="dialog-intro" id="conversationIntro">Tell us who you are and what you are working on. Enquiries go directly to the programme team.</p>
+<div class="dialog-contact">
+<a href="mailto:contact@tri-impact.org">contact@tri-impact.org</a>
+<a href="tel:+911206253535">+91 120 6253535</a>
 </div>
+</aside>
 <div class="dialog-formwrap">
-<button aria-label="Close dialog" class="dialog-close" data-close-conversation="" type="button">&times;</button>
-<form id="conversationForm" novalidate>
+<button aria-label="Close enquiry form" class="dialog-close" data-close-conversation="" id="dialogClose" type="button">×</button>
+<form id="conversationForm" novalidate="">
 <div class="form-row">
-<label for="field-name">Name</label>
-<input autocomplete="name" class="form-control" id="field-name" name="name" required type="text"/>
-<p class="field-error" data-error-for="field-name"></p>
+<label for="conversationName">Name</label>
+<input aria-describedby="nameError" autocomplete="name" class="form-control" id="conversationName" name="name" required="" type="text"/>
+<p class="field-error" id="nameError"></p>
 </div>
 <div class="form-row">
-<label for="field-org">Organisation</label>
-<input autocomplete="organization" class="form-control" id="field-org" name="organisation" required type="text"/>
-<p class="field-error" data-error-for="field-org"></p>
+<label for="conversationOrganisation">Organisation</label>
+<input aria-describedby="organisationError" autocomplete="organization" class="form-control" id="conversationOrganisation" name="organisation" required="" type="text"/>
+<p class="field-error" id="organisationError"></p>
 </div>
 <div class="form-row">
-<label for="field-email">Email</label>
-<input autocomplete="email" class="form-control" id="field-email" name="email" required type="email"/>
-<p class="field-error" data-error-for="field-email"></p>
+<label for="conversationEmail">Email</label>
+<input aria-describedby="emailError" autocomplete="email" class="form-control" id="conversationEmail" name="email" required="" type="email"/>
+<p class="field-error" id="emailError"></p>
 </div>
 <div class="form-row">
-<label for="field-message">Message</label>
-<textarea class="form-control" id="field-message" name="message" rows="4"></textarea>
+<label for="conversationMessage">Message</label>
+<textarea class="form-control" id="conversationMessage" name="message" rows="4"></textarea>
 </div>
-<button class="btn btn-primary btn-block" type="submit">Send message</button>
-<p aria-live="polite" class="form-status" id="formStatus"></p>
-<p class="privacy-note">Tri-Impact Global uses this information only to respond to your enquiry.</p>
+<button class="btn btn-primary btn-block" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
+<p aria-live="polite" class="form-status" id="conversationStatus" role="status"></p>
+<p class="privacy-note">Tri-Impact uses these details only to respond to your enquiry.</p>
 </form>
 </div>
 </div>
@@ -880,37 +888,34 @@
   });
 
   var form = document.getElementById('conversationForm');
-  var status = document.getElementById('formStatus');
+  var status = document.getElementById('conversationStatus');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var valid = true;
-    ['field-name', 'field-org', 'field-email'].forEach(function (id) {
-      var input = document.getElementById(id);
-      var errorEl = document.querySelector('[data-error-for="' + id + '"]');
-      if (!input.value.trim()) {
-        errorEl.textContent = 'This field is required.';
-        valid = false;
-      } else {
-        errorEl.textContent = '';
-      }
-    });
-    if (valid) {
-      var name = document.getElementById('field-name').value.trim();
-      var organisation = document.getElementById('field-org').value.trim();
-      var email = document.getElementById('field-email').value.trim();
-      var messageText = document.getElementById('field-message').value.trim();
-      var subject = encodeURIComponent('Website enquiry from ' + organisation);
-      var bodyLines = ['Name: ' + name, 'Organisation: ' + organisation, 'Email: ' + email];
-      if (messageText) {
-        bodyLines.push('', 'Message:', messageText);
-      } else {
-        bodyLines.push('', 'Please contact me regarding a potential programme or partnership discussion.');
-      }
-      var body = encodeURIComponent(bodyLines.join('\n'));
-      status.textContent = 'Your email application is opening with the enquiry prepared.';
-      window.location.href = 'mailto:contact@tri-impact.org?subject=' + subject + '&body=' + body;
-      form.reset();
+    var name = document.getElementById('conversationName').value.trim();
+    var organisation = document.getElementById('conversationOrganisation').value.trim();
+    var email = document.getElementById('conversationEmail').value.trim();
+    var messageText = document.getElementById('conversationMessage').value.trim();
+    var validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    document.getElementById('nameError').textContent = name ? '' : 'Enter your name.';
+    document.getElementById('organisationError').textContent = organisation ? '' : 'Enter your organisation.';
+    document.getElementById('emailError').textContent = validEmail ? '' : 'Enter a valid email address.';
+
+    if (!name || !organisation || !validEmail) {
+      status.textContent = 'Please complete all three fields.';
+      return;
     }
+
+    var subject = encodeURIComponent('Website enquiry from ' + organisation);
+    var bodyLines = ['Name: ' + name, 'Organisation: ' + organisation, 'Email: ' + email];
+    if (messageText) {
+      bodyLines.push('', 'Message:', messageText);
+    } else {
+      bodyLines.push('', 'Please contact me regarding a potential programme or partnership discussion.');
+    }
+    var body = encodeURIComponent(bodyLines.join('\n'));
+    status.textContent = 'Your email application is opening with the enquiry prepared.';
+    window.location.href = 'mailto:contact@tri-impact.org?subject=' + subject + '&body=' + body;
   });
 
   var reveals = document.querySelectorAll('[data-reveal]');
