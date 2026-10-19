@@ -746,7 +746,7 @@
       .focus-showcase-head { gap: 28px; }
       .identity-copy { max-width: 48rem; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .focus-row { grid-template-columns: 58px minmax(180px, 0.72fr) minmax(260px, 1.2fr) minmax(230px, 0.8fr); }
+      .focus-row { grid-template-columns: 58px minmax(0, 0.72fr) minmax(0, 1.2fr) minmax(0, 0.8fr); }
       .focus-action { display: none; }
       .method-grid { gap: 34px; }
       .cycle { width: min(100%, 720px); margin-inline: auto; }
@@ -864,15 +864,43 @@
     @media (max-width: 480px) {
       .hero-ctas .btn-hero { width: 100%; justify-content: center; }
     }
-  </style>
+  
+/* Initiatives band (shared) */
+.ib-section{background:var(--mist);}
+.ib-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;margin-bottom:clamp(24px,3vw,36px);}
+.ib-head h2{margin:0;max-width:none;font-size:clamp(1.7rem,2.6vw,2.4rem);}
+.ib-head .ib-all{display:inline-flex;align-items:center;gap:8px;color:var(--logo-blue);font-weight:700;text-decoration:none;}
+.ib-head .ib-all:hover{text-decoration:underline;text-underline-offset:4px;}
+.ib-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:0;padding:0;list-style:none;}
+.ib-card{display:flex;flex-direction:column;height:100%;border-radius:var(--radius,18px);overflow:hidden;background:#fff;border:1px solid var(--rule);text-decoration:none;color:inherit;transition:transform 200ms ease,box-shadow 200ms ease;}
+.ib-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(4,31,66,0.10);}
+.ib-card:focus-visible{outline:3px solid var(--logo-blue);outline-offset:3px;}
+.ib-card img{display:block;width:100%;aspect-ratio:16/10;height:auto;object-fit:cover;object-position:var(--pos,50% 50%);background:#dfe5ec;}
+.ib-body{display:flex;flex-direction:column;gap:8px;padding:18px 20px 20px;flex:1;}
+.ib-tag{align-self:flex-start;padding:3px 10px;border-radius:999px;background:var(--blue-soft);color:var(--navy-deep);font-size:0.76rem;font-weight:700;letter-spacing:0.04em;}
+.ib-tag--also{background:transparent;border:1px solid var(--rule);color:var(--slate);}
+.ib-body h3{margin:0;font-size:1.12rem;line-height:1.3;color:var(--navy-deep);}
+.ib-body p{margin:0;color:var(--ink);font-size:0.97rem;line-height:1.55;}
+.ib-more{margin-top:auto;padding-top:6px;color:var(--logo-blue);font-weight:700;font-size:0.95rem;}
+@media (prefers-reduced-motion:reduce){.ib-card{transition:none;}.ib-card:hover{transform:none;}}
+
+.ib-home .ib-head{align-items:flex-end;}
+.ib-deck{margin:12px 0 0;max-width:62ch;color:var(--ink);font-size:1.05rem;line-height:1.6;}
+.ib-grid--four{grid-template-columns:repeat(4,minmax(0,1fr));}
+@media (max-width:1120px){.ib-grid--four{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media (max-width:620px){.ib-grid--four{grid-template-columns:1fr;}}
+.reach-note{margin:22px 0 0;color:rgba(255,255,255,0.7);font-size:0.9rem;}
+.logo-viewport{overflow:hidden;min-width:0;}
+@media (max-width:1120px){.cycle-step:nth-child(3){right:0;}.cycle-step:nth-child(6){left:0;}.cycle-step:nth-child(2){right:0;}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="site-header" id="siteHeader">
 <div class="container header-inner">
-<a aria-label="Tri-Impact Global home" class="brand" href="index.html">
-<img alt="Tri-Impact Global" class="brand-white" src="https://ik.imagekit.io/triimpact16/Tri-Impact%20Logo/Tri-Impact_White.png?updatedAt=1782831051210"/>
-<img alt="" class="brand-colour" src="https://ik.imagekit.io/triimpact16/Tri-Impact%20Logo/Tri-Impact%20Global%20logo.png?updatedAt=1782831051152"/>
+<a aria-label="Tri-Impact Global home" class="brand" href="index.html" aria-current="page">
+<img alt="Tri-Impact Global" class="brand-white" src="https://ik.imagekit.io/triimpact16/Tri-Impact%20Logo/Tri-Impact_White.png?updatedAt=1782831051210">
+<img alt="" class="brand-colour" src="https://ik.imagekit.io/triimpact16/Tri-Impact%20Logo/Tri-Impact%20Global%20logo.png?updatedAt=1782831051152">
 </a>
 <button aria-controls="primaryNav" aria-expanded="false" aria-label="Open navigation menu" class="menu-toggle" id="menuToggle" type="button">
 <span aria-hidden="true" class="menu-lines"></span>
@@ -891,9 +919,15 @@
 </div>
 </div>
 <a href="decent-work.html">Decent Work</a>
-<a href="livelihood-security.html">Livelihood Security</a>
+<div class="nav-submenu-group nav-subitem-has-children">
+<a aria-haspopup="true" class="nav-submenu-main nav-submenu-main--has-children" href="livelihood-security.html">Livelihood Security</a>
+<div aria-label="Livelihood Security sub-pages" class="nav-submenu-nested nav-nested-flyout">
+<a href="living-art-traditions.html">Living Art Traditions</a>
+</div>
+</div>
 </div>
 </li>
+<li><a class="nav-link" href="initiatives.html">Initiatives</a></li>
 <li><a class="nav-link" href="insights.html">Insights</a></li>
 <li class="nav-dropdown">
 <button aria-haspopup="true" class="nav-parent" type="button">About</button>
@@ -921,8 +955,8 @@
 </div>
 <dl aria-label="Field delivery at a glance" class="hero-proof d4">
 <div><dt>Since 2012</dt><dd>Continuous field delivery</dd></div>
-<div><dt>500,000+</dt><dd>Workers reached</dd></div>
-<div><dt>150,000+</dt><dd>Children supported</dd></div>
+<div><dt>515,523</dt><dd>Workers reached</dd></div>
+<div><dt>141,628</dt><dd>Children supported</dd></div>
 </dl>
 </div>
 </section>
@@ -1033,12 +1067,16 @@
 </div>
 <div aria-label="Tri-Impact field reach since 2012" class="stats-grid stats-grid--primary">
 <div class="stat stat--primary" data-reveal=""><span class="stat-value">Since 2012</span><span class="stat-label">Building delivery infrastructure where formal reach runs out</span></div>
-<div class="stat stat--primary" data-reveal=""><span class="stat-value">500,000+</span><span class="stat-label">Workers reached through programmes, legal protections and direct welfare access</span></div>
-<div class="stat stat--primary" data-reveal=""><span class="stat-value">200,000+</span><span class="stat-label">Of those, homeworkers identified and brought into formal view for the first time</span></div>
-<div class="stat stat--primary" data-reveal=""><span class="stat-value">150,000+</span><span class="stat-label">Children in worker households accessing education and welfare support</span></div>
-<div class="stat stat--primary" data-reveal=""><span class="stat-value">300+</span><span class="stat-label">Climate adaptation successes documented in the Uttarakhand Himalaya</span></div>
-<div class="stat stat--primary" data-reveal=""><span class="stat-value">25 companies, 200+ units</span><span class="stat-label">Engaged through Roshni capacity building</span></div>
+<div class="stat stat--primary" data-reveal=""><span class="stat-value">515,523</span><span class="stat-label">Workers reached through programmes, legal protections and direct welfare access</span></div>
+<div class="stat stat--primary" data-reveal=""><span class="stat-value">227,590</span><span class="stat-label">Of those, homeworkers identified and linked to formal systems for the first time</span></div>
+<div class="stat stat--primary" data-reveal=""><span class="stat-value">141,628</span><span class="stat-label">Children in worker households supported with education and welfare access</span></div>
+<div class="stat stat--primary" data-reveal=""><span class="stat-value">2,000+</span><span class="stat-label">Artisans and weavers supported, including Silk Mark and GI support</span></div>
+<div class="stat stat--primary" data-reveal=""><span class="stat-value">375+</span><span class="stat-label">Climate adaptation solutions documented across 13 Uttarakhand districts</span></div>
+<div class="stat stat--primary" data-reveal=""><span class="stat-value">400+</span><span class="stat-label">Local entrepreneurs connected through climate resilience work</span></div>
+<div class="stat stat--primary" data-reveal=""><span class="stat-value">30 companies, 300+ units</span><span class="stat-label">Trained through Roshni to map their own production networks</span></div>
+<div class="stat stat--primary" data-reveal=""><span class="stat-value">2,550</span><span class="stat-label">Migrant and informal workers made visible to employers through WorkersJoint, with IOM</span></div>
 </div>
+<p class="reach-note" data-reveal="">Cumulative figures for Tri-Impact programmes since 2012.</p>
 </div>
 </section>
 <section aria-labelledby="work-title" class="section mist" id="work">
@@ -1053,20 +1091,20 @@
 <span class="focus-number">01</span>
 <h3>Climate Action</h3>
 <span class="focus-description">Communities adapting to climate stress on their own terms, documented so the practice can be verified and repeated.</span>
-<span class="focus-work">300+ adaptations, 13 districts</span>
+<span class="focus-work">375+ solutions, 13 districts</span>
 <span class="focus-action">Explore →</span>
 </a>
 <a class="focus-row" data-reveal="" href="decent-work.html">
 <span class="focus-number">02</span>
 <h3>Decent Work</h3>
 <span class="focus-description">Workers and homeworkers outside formal systems, connected to what they are owed.</span>
-<span class="focus-work">500,000+ workers reached</span>
+<span class="focus-work">515,523 workers reached</span>
 <span class="focus-action">Explore →</span>
 </a>
 <a class="focus-row" data-reveal="" href="livelihood-security.html">
 <span class="focus-number">03</span>
 <h3>Livelihood Security</h3>
-<span class="focus-description">Producers and artisans under pressure, backed so skilled work pays and producers hold.</span>
+<span class="focus-description">Artists, artisans and producers under pressure, backed so skilled work pays and earns a fair price.</span>
 <span class="focus-work">2,000+ artisans and weavers</span>
 <span class="focus-action">Explore →</span>
 </a>
@@ -1104,53 +1142,7 @@
 </div>
 </div>
 </section>
-<section aria-labelledby="focus-title" class="section mist">
-<div class="container">
-<span class="eyebrow" data-reveal="">Initiatives in Focus</span>
-<div class="focus-showcase-head">
-<h2 data-reveal="" id="focus-title">Work that leaves sustainable change behind.</h2>
-<p data-reveal="">Tri-Impact's initiatives are designed to be transferable. Each begins in the field, generates documented evidence at scale, and concludes with a method, tool and pathway that partners and communities can carry forward independently. Success is measured not by activity completed, but by capacity built and sustained.</p>
-</div>
-<div class="spotlight-grid">
-<article class="spotlight-primary" data-reveal="">
-<div class="spotlight-media">
-<img alt="Community-led climate adaptation documentation in Uttarakhand" loading="lazy" src="https://ik.imagekit.io/triimpact16/Field%20Images/Hero%20image%2001.png?updatedAt=1782831024283&amp;tr=w-1500,q-84,f-webp"/>
-<span class="spotlight-tag">Climate Action</span>
-</div>
-<div class="spotlight-content">
-<h3>What communities already know can become shared infrastructure.</h3>
-<p>Climate Success Mapping documents locally tested responses to climate pressure, examines the conditions that make them work and turns field knowledge into a base for replication, research and policy dialogue.</p>
-<div aria-label="Climate Success Mapping evidence" class="proof-row">
-<div class="proof-item"><strong>300+</strong><span>adaptation successes documented</span></div>
-<div class="proof-item"><strong>13</strong><span>Uttarakhand districts covered</span></div>
-<div class="proof-item"><strong>400+</strong><span>local entrepreneurs connected</span></div>
-</div>
-<a class="text-link" href="climate-success-mapping.html">Explore Climate Success Mapping <span aria-hidden="true" class="arrow">→</span></a>
-</div>
-</article>
-<article class="spotlight-secondary" data-reveal="">
-<div>
-<span class="eyebrow">Climate Action + Livelihood Security</span>
-<h3>An ecological problem becomes a material opportunity.</h3>
-<p>Natural Colours documents dye-yielding native and invasive plants, converts field knowledge into practical learning resources and creates a foundation for climate-responsive production and livelihood development.</p>
-<ul aria-label="Natural Colours outputs" class="output-list">
-<li><span>01</span> Bilingual handbook for field and artisan use</li>
-<li><span>02</span> GPS-tagged catalogue of dye-yielding plants</li>
-<li><span>03</span> Three practical learning modules</li>
-</ul>
-<blockquote class="spotlight-quote">
-<p>"We have personally benefited from this. Our knowledge and understanding have increased."</p>
-<cite>Neeta Baghiyal<span>Bhartiya Gramotthan Sanstha, Rishikesh</span></cite>
-</blockquote>
-</div>
-<div>
-<p class="spotlight-support">Implemented with support from the British Council.</p>
-<a class="text-link" href="natural-colours.html">Explore Natural Colours <span aria-hidden="true" class="arrow">→</span></a>
-</div>
-</article>
-</div>
-</div>
-</section>
+<section aria-labelledby="focus-title" class="section mist ib-home" id="initiatives"><div class="container"><div class="ib-head"><div><span class="eyebrow" data-reveal="">Initiatives</span><h2 data-reveal="" id="focus-title">Turning local resources into lasting livelihoods.</h2><p class="ib-deck" data-reveal="">Art traditions, invasive plants, livestock dung and crop residues. Tri-Impact's initiatives turn what a place already has into income, healthier soil and resilience to a changing climate.</p></div><a class="ib-all" href="initiatives.html">See all initiatives <span aria-hidden="true">→</span></a></div><ul class="ib-grid ib-grid--four"><li data-reveal=""><a class="ib-card" href="living-art-traditions.html"><img src="https://ik.imagekit.io/triimpact16/Artist/Vibrant%20Folk%20Art%20Workshop.png?tr=w-640,q-80,f-webp" width="640" height="400" loading="lazy" decoding="async" alt="Young women artists paint figures and trees on a long black cloth at a shared workshop table." style="--pos:50% 18%"><div class="ib-body"><span class="ib-tag">Livelihood Security · Decent Work</span><h3>Living Art Traditions</h3><p>Skills, provenance, buyers, savings and health, brought together around each artist.</p><span class="ib-more">Read more <span aria-hidden="true">→</span></span></div></a></li><li data-reveal=""><a class="ib-card" href="natural-colours.html"><img src="https://ik.imagekit.io/triimpact16/Hero%20Images/Women%20making%20natural%20Colours.png?tr=w-640,q-80,f-webp" width="640" height="400" loading="lazy" decoding="async" alt="Women artisans in the Garhwal Himalayas stir plant material in a dye vat." style="--pos:50% 40%"><div class="ib-body"><span class="ib-tag">Climate Action · Livelihood Security</span><h3>Natural Colours</h3><p>Natural dye from invasive plants, native plants and food waste, made and sold by artisans.</p><span class="ib-more">Read more <span aria-hidden="true">→</span></span></div></a></li><li data-reveal=""><a class="ib-card" href="initiatives.html#dung-to-dignity"><img src="https://ik.imagekit.io/triimpact16/Dung%20to%20Dignity/53954278797_a65d6ac16b_o.jpg?tr=w-640,q-80,f-webp" width="640" height="400" loading="lazy" decoding="async" alt="A close-up of dark, crumbly compost." style="--pos:50% 50%"><div class="ib-body"><span class="ib-tag">Livelihood Security · Climate Action</span><h3>Dung to Dignity</h3><p>Livestock dung, turned into compost for the family farm and for sale.</p><span class="ib-more">Read more <span aria-hidden="true">→</span></span></div></a></li><li data-reveal=""><a class="ib-card" href="initiatives.html#organic-resources-green-enterprises"><img src="https://ik.imagekit.io/triimpact16/From%20Organic%20Resources/Outdoor%20Charcoal%20Drying%20Area.png?tr=w-640,q-80,f-webp" width="640" height="400" loading="lazy" decoding="async" alt="Pieces of biochar spread out to cool and dry on a sheet in the hills." style="--pos:50% 55%"><div class="ib-body"><span class="ib-tag">Climate Action · Livelihood Security</span><h3>From Organic Resources to Green Enterprises</h3><p>Lantana, pine needles and crop residues, turned into biochar and rural enterprises.</p><span class="ib-more">Read more <span aria-hidden="true">→</span></span></div></a></li></ul></div></section>
 <section aria-labelledby="insights-title" class="section">
 <div class="container">
 <div class="insights-head">
@@ -1193,27 +1185,19 @@
 <div class="container">
 <div class="footer-top">
 <div class="footer-brand">
-<img alt="Tri-Impact Global" src="https://ik.imagekit.io/triimpact16/Tri-Impact%20Logo/Tri-Impact_White.png?updatedAt=1782831051210"/>
+<img alt="Tri-Impact Global" src="https://ik.imagekit.io/triimpact16/Tri-Impact%20Logo/Tri-Impact_White.png?updatedAt=1782831051210">
 <p class="footer-description"><span>A public charitable trust founded on October 2012,</span><span>formerly known as GoodWeave India Trust. Operating</span><span>across Uttar Pradesh, Rajasthan, NCR and Uttarakhand,</span><span>with established field capacity across India.</span></p>
 <div aria-label="Tri-Impact Global social media links" class="social-links">
-<a aria-label="Tri-Impact Global on LinkedIn" href="https://www.linkedin.com/company/tri-impact-global" rel="noopener" target="_blank">
-<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6.6 0h3.8v1.64h.05c.53-1 1.84-2.06 3.78-2.06 4.04 0 4.77 2.66 4.77 6.12V21h-4v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95V21h-4V9Z"></path></svg>
-</a>
-<a aria-label="Tri-Impact Global on YouTube" href="https://www.youtube.com/@TriImpact" rel="noopener" target="_blank">
-<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.12C19.5 3.56 12 3.56 12 3.56s-7.5 0-9.4.52A3 3 0 0 0 .5 6.2 31.1 31.1 0 0 0 0 12a31.1 31.1 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.12c1.9.52 9.4.52 9.4.52s7.5 0 9.4-.52a3 3 0 0 0 2.1-2.12A31.1 31.1 0 0 0 24 12a31.1 31.1 0 0 0-.5-5.8ZM9.6 15.58V8.42L15.86 12 9.6 15.58Z"></path></svg>
-</a>
-<a aria-label="Tri-Impact Global on Instagram" href="https://www.instagram.com/triimpactglobal/" rel="noopener" target="_blank">
-<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm4.8 3.35A4.65 4.65 0 1 1 7.35 12 4.66 4.66 0 0 1 12 7.35Zm0 2A2.65 2.65 0 1 0 14.65 12 2.65 2.65 0 0 0 12 9.35Zm5.02-2.9a1.08 1.08 0 1 1-1.08 1.08 1.08 1.08 0 0 1 1.08-1.08Z"></path></svg>
-</a>
-<a aria-label="Tri-Impact Global on X" href="https://x.com/TriImpact" rel="noopener" target="_blank">
-<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M18.9 2h3.08l-6.73 7.7L23.17 22h-6.2l-4.86-6.35L6.56 22H3.47l7.2-8.24L3.08 2h6.36l4.39 5.81L18.9 2Zm-1.08 17.84h1.7L8.5 4.05H6.67l11.15 15.79Z"></path></svg>
-</a>
+<a aria-label="Tri-Impact Global on LinkedIn" href="https://www.linkedin.com/company/tri-impact-global" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6.6 0h3.8v1.64h.05c.53-1 1.84-2.06 3.78-2.06 4.04 0 4.77 2.66 4.77 6.12V21h-4v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95V21h-4V9Z"></path></svg></a>
+<a aria-label="Tri-Impact Global on YouTube" href="https://www.youtube.com/@TriImpact" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.12C19.5 3.56 12 3.56 12 3.56s-7.5 0-9.4.52A3 3 0 0 0 .5 6.2 31.1 31.1 0 0 0 0 12a31.1 31.1 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.12c1.9.52 9.4.52 9.4.52s7.5 0 9.4-.52a3 3 0 0 0 2.1-2.12A31.1 31.1 0 0 0 24 12a31.1 31.1 0 0 0-.5-5.8ZM9.6 15.58V8.42L15.86 12 9.6 15.58Z"></path></svg></a>
+<a aria-label="Tri-Impact Global on Instagram" href="https://www.instagram.com/triimpactglobal/" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm4.8 3.35A4.65 4.65 0 1 1 7.35 12 4.66 4.66 0 0 1 12 7.35Zm0 2A2.65 2.65 0 1 0 14.65 12 2.65 2.65 0 0 0 12 9.35Zm5.02-2.9a1.08 1.08 0 1 1-1.08 1.08 1.08 1.08 0 0 1 1.08-1.08Z"></path></svg></a>
+<a aria-label="Tri-Impact Global on X" href="https://x.com/TriImpact" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M18.9 2h3.08l-6.73 7.7L23.17 22h-6.2l-4.86-6.35L6.56 22H3.47l7.2-8.24L3.08 2h6.36l4.39 5.81L18.9 2Zm-1.08 17.84h1.7L8.5 4.05H6.67l11.15 15.79Z"></path></svg></a>
 </div>
 </div>
 <div class="footer-contact">
 <h4>Contact</h4>
-<p>B-08, 7th Floor, Signature Tower<br/>Wegmans Business Park, Knowledge Park 3<br/>Greater Noida, Uttar Pradesh 201308</p>
-<p><a href="tel:+911206253535">+91 120 6253535</a><br/><a href="mailto:contact@tri-impact.org">contact@tri-impact.org</a></p>
+<p>B-08, 7th Floor, Signature Tower<br>Wegmans Business Park, Knowledge Park 3<br>Greater Noida, Uttar Pradesh 201308</p>
+<p><a href="tel:+911206253535">+91 120 6253535</a><br><a href="mailto:contact@tri-impact.org">contact@tri-impact.org</a></p>
 </div>
 </div>
 <div class="footer-bottom">
@@ -1228,33 +1212,15 @@
 <span class="dialog-eyebrow">Enquiries</span>
 <h2 id="conversationTitle">Start a conversation</h2>
 <p class="dialog-intro" id="conversationIntro">Tell us who you are and what you are working on. Enquiries go directly to the programme team.</p>
-<div class="dialog-contact">
-<a href="mailto:contact@tri-impact.org">contact@tri-impact.org</a>
-<a href="tel:+911206253535">+91 120 6253535</a>
-</div>
+<div class="dialog-contact"><a href="mailto:contact@tri-impact.org">contact@tri-impact.org</a><a href="tel:+911206253535">+91 120 6253535</a></div>
 </aside>
 <div class="dialog-formwrap">
 <button aria-label="Close enquiry form" class="dialog-close" data-close-conversation="" id="dialogClose" type="button">×</button>
 <form id="conversationForm" novalidate="">
-<div class="form-row">
-<label for="conversationName">Name</label>
-<input aria-describedby="nameError" autocomplete="name" class="form-control" id="conversationName" name="name" required="" type="text"/>
-<p class="field-error" id="nameError"></p>
-</div>
-<div class="form-row">
-<label for="conversationOrganisation">Organisation</label>
-<input aria-describedby="organisationError" autocomplete="organization" class="form-control" id="conversationOrganisation" name="organisation" required="" type="text"/>
-<p class="field-error" id="organisationError"></p>
-</div>
-<div class="form-row">
-<label for="conversationEmail">Email</label>
-<input aria-describedby="emailError" autocomplete="email" class="form-control" id="conversationEmail" name="email" required="" type="email"/>
-<p class="field-error" id="emailError"></p>
-</div>
-<div class="form-row">
-<label for="conversationMessage">Message</label>
-<textarea class="form-control" id="conversationMessage" name="message" rows="4"></textarea>
-</div>
+<div class="form-row"><label for="conversationName">Name</label><input aria-describedby="nameError" autocomplete="name" class="form-control" id="conversationName" name="name" required="" type="text"><p class="field-error" id="nameError"></p></div>
+<div class="form-row"><label for="conversationOrganisation">Organisation</label><input aria-describedby="organisationError" autocomplete="organization" class="form-control" id="conversationOrganisation" name="organisation" required="" type="text"><p class="field-error" id="organisationError"></p></div>
+<div class="form-row"><label for="conversationEmail">Email</label><input aria-describedby="emailError" autocomplete="email" class="form-control" id="conversationEmail" name="email" required="" type="email"><p class="field-error" id="emailError"></p></div>
+<div class="form-row"><label for="conversationMessage">Message</label><textarea class="form-control" id="conversationMessage" name="message" rows="4"></textarea></div>
 <button class="btn btn-primary btn-block" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
 <p aria-live="polite" class="form-status" id="conversationStatus" role="status"></p>
 <p class="privacy-note">Tri-Impact uses these details only to respond to your enquiry.</p>
