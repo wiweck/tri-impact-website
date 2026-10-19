@@ -5,6 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Insights | Tri-Impact Global</title>
+<link rel="preconnect" href="https://substackcdn.com" crossorigin>
 <meta content="Field notes on climate action, decent work and livelihood security from Tri-Impact Global, alongside the Natural Colour Repository, annual reports, media coverage and volunteer records that document the work." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://tri-impact.org/insights.html" rel="canonical"/>
@@ -1362,7 +1363,7 @@
           .catch(showSubstackFallback);
       }
 
-      loadSubstackPosts();
+      /* Posts are written into the page by scripts/update_substack.py; no client-side reload. */
 
       var revealItems = document.querySelectorAll('[data-reveal]');
       if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

@@ -58,8 +58,11 @@ def fdate(s):
 
 def image(p):
     img = p.get('cover_image') or ''
-    if 'substack-post-media.s3.amazonaws.com' in img:
-        img = 'https://substackcdn.com/image/fetch/w_1200,h_675,c_fill,f_auto,q_auto:good,fl_progressive:steep/' + urllib.parse.quote(img, safe='')
+    if img.startswith('https://substackcdn.com/image/fetch/'):
+        # already a CDN URL: take the original source and request a small, cropped thumbnail
+        img = urllib.parse.unquote(img.rsplit('/', 1)[-1])
+    if img.startswith('https://substack-post-media.s3.amazonaws.com/'):
+        img = 'https://substackcdn.com/image/fetch/w_720,h_405,c_fill,f_auto,q_auto:good,fl_progressive:steep/' + urllib.parse.quote(img, safe='')
     return img
 
 
@@ -71,7 +74,7 @@ def home_cards(posts):
     out = []
     for p in posts[:3]:
         img = image(p)
-        media = (f'<div class="insight-card-media"><img src="{esc(img)}" alt="Thumbnail image from the Substack article {esc(p["title"])}" loading="lazy"></div>'
+        media = (f'<div class="insight-card-media"><img src="{esc(img)}" alt="Thumbnail image from the Substack article {esc(p["title"])}" width="720" height="405" loading="lazy" decoding="async"></div>'
                  if re.search(r'substackcdn\.com|substack-post-media', img) else
                  '<div class="insight-card-media insight-card-placeholder" aria-hidden="true"><span>SR</span></div>')
         u = esc(p['canonical_url'])
