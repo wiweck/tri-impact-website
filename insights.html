@@ -895,7 +895,45 @@
     .also-row--pending { opacity: 0.72; }
     .pending-note { font-size: 0.84rem; font-style: italic; color: var(--slate); white-space: nowrap; }
     @media (max-width: 860px) { .also-grid { grid-template-columns: 1fr; } .also-row { flex-direction: column; align-items: flex-start; gap: 8px; } }
-  </style>
+  
+/* Enquiry dialog: one design across the site */
+#conversationDialog.conversation-dialog{width:min(calc(100% - 32px),880px);max-width:880px;max-height:calc(100dvh - 32px);margin:auto;padding:0;border:0;border-radius:20px;background:var(--white,#fff);box-shadow:0 30px 90px rgba(4,31,66,0.42);overflow:auto;}
+#conversationDialog.conversation-dialog::backdrop{background:rgba(4,31,66,0.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+#conversationDialog .dialog-grid{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);min-height:0;}
+#conversationDialog .dialog-aside{display:flex;flex-direction:column;gap:14px;padding:clamp(30px,5vw,48px);background:linear-gradient(160deg,var(--navy,#062E5F) 0%,var(--navy-deep,#041F42) 78%);color:#fff;}
+#conversationDialog .dialog-eyebrow{display:block;margin:0;color:rgba(255,255,255,0.62);font-size:0.74rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;}
+#conversationDialog .dialog-aside h2{margin:0;color:#fff;font-family:"Merriweather",Georgia,serif;font-size:clamp(1.6rem,3.4vw,2.15rem);line-height:1.15;letter-spacing:-0.02em;max-width:none;}
+#conversationDialog .dialog-intro{margin:0;color:rgba(255,255,255,0.78);font-size:1rem;line-height:1.6;max-width:none;}
+#conversationDialog .dialog-contact{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:auto;padding-top:22px;border-top:1px solid rgba(255,255,255,0.18);}
+#conversationDialog .dialog-contact a{width:fit-content;color:#fff;font-weight:600;font-size:1rem;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.35);overflow-wrap:anywhere;transition:border-color 0.18s ease;}
+#conversationDialog .dialog-contact a:hover{border-color:#fff;}
+#conversationDialog .dialog-aside a:focus-visible{outline:3px solid rgba(255,255,255,0.75);outline-offset:3px;}
+#conversationDialog .dialog-formwrap{position:relative;padding:clamp(30px,5vw,48px);background:#fff;}
+#conversationDialog .dialog-close{position:absolute;top:14px;right:14px;width:42px;height:42px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:var(--mist,#F4F7FA);color:var(--navy-deep,#041F42);font-size:1.5rem;line-height:1;cursor:pointer;transition:background 0.18s ease;}
+#conversationDialog .dialog-close:hover{background:var(--blue-soft,#E8F0FA);}
+#conversationDialog form{margin:0;}
+#conversationDialog .form-row{margin:0 0 17px;}
+#conversationDialog .form-row label{display:block;margin:0 0 7px;color:var(--navy-deep,#041F42);font-size:1rem;font-weight:700;}
+#conversationDialog .form-control{display:block;width:100%;min-height:50px;padding:11px 13px;border:1px solid rgba(6,46,95,0.28);border-radius:10px;background:#fff;color:var(--ink,#1F2A37);font:inherit;font-size:1rem;box-sizing:border-box;}
+#conversationDialog textarea.form-control{min-height:110px;resize:vertical;}
+#conversationDialog .form-control:focus{border-color:var(--logo-blue,#074A96);outline:3px solid rgba(7,74,150,0.18);outline-offset:0;}
+#conversationDialog .field-error{min-height:18px;margin:5px 0 0;color:#8A1C1C;font-size:0.82rem;}
+#conversationDialog .btn-block{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;}
+#conversationDialog .form-status{min-height:22px;margin:14px 0 0;color:var(--navy,#062E5F);font-weight:600;}
+#conversationDialog .privacy-note{margin:12px 0 0;color:var(--slate,#4A5868);font-size:0.82rem;max-width:none;}
+@media (max-width:760px){
+#conversationDialog .dialog-grid{grid-template-columns:1fr;}
+#conversationDialog .dialog-aside{gap:10px;padding:26px 22px;}
+#conversationDialog .dialog-aside h2{font-size:1.5rem;}
+#conversationDialog .dialog-contact{margin-top:6px;padding-top:14px;}
+#conversationDialog .dialog-formwrap{padding:26px 22px;}
+#conversationDialog .dialog-grid{position:relative;}
+#conversationDialog .dialog-formwrap{position:static;}
+#conversationDialog .dialog-close{top:12px;right:12px;background:rgba(255,255,255,0.14);color:#fff;}
+#conversationDialog .dialog-close:hover{background:rgba(255,255,255,0.24);}
+#conversationDialog .dialog-close:focus-visible{outline:3px solid rgba(255,255,255,0.75);outline-offset:2px;}
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -964,16 +1002,7 @@
 <p data-reveal="">Vivek K. Singh writes The Sustainability Realist on Substack: field-tested analysis on carbon disclosure, decent work and the last-mile gap between sustainability ambition and supply chain reality. The most recent articles load alongside this, directly from the publication.</p>
 </div>
 <div>
-<div aria-live="polite" class="journal-list" id="substackJournal">
-<div class="journal-row is-lead">
-<time>The Sustainability Realist</time>
-<div>
-<h3>Recent articles load here, newest first, directly from Substack.</h3>
-<p>Field notes on climate action, decent work, livelihoods and responsible business.</p>
-<a class="text-link" href="https://wiweck.substack.com/" rel="noopener" target="_blank">Open the publication <span aria-hidden="true" class="arrow">→</span></a>
-</div>
-</div>
-</div>
+<div aria-live="polite" class="journal-list" id="substackJournal"><!-- substack:start --><div class="journal-row is-lead"><time>7 Apr 2026</time><div><h3><a class="journal-row-link" href="https://wiweck.substack.com/p/the-paradox-of-american-military" target="_blank" rel="noopener">The Paradox of American Military Power</a></h3><p>How the US-Iran War Is Exposing the True Cost of Fossil Fuel Dependence, and Why Energy Independence Through Renewables Is Now a Strategic Imperative</p><a class="text-link" href="https://wiweck.substack.com/p/the-paradox-of-american-military" target="_blank" rel="noopener">Read insight <span class="arrow" aria-hidden="true">→</span></a></div></div><div class="journal-row"><time>24 Mar 2026</time><div><h3><a class="journal-row-link" href="https://wiweck.substack.com/p/when-your-buyer-asks-for-a-carbon" target="_blank" rel="noopener">When Your Buyer Asks for a Carbon Footprint, Which One Do They Mean?</a></h3><p>The product carbon footprint request your team cannot answer - yet</p><a class="text-link" href="https://wiweck.substack.com/p/when-your-buyer-asks-for-a-carbon" target="_blank" rel="noopener">Read insight <span class="arrow" aria-hidden="true">→</span></a></div></div><div class="journal-row"><time>3 Mar 2026</time><div><h3><a class="journal-row-link" href="https://wiweck.substack.com/p/the-carbon-disclosure-tsunami-the" target="_blank" rel="noopener">The Carbon Disclosure Tsunami: The Disclosure Harmonisation Approach to Multi-Framework Compliance</a></h3><p>One data foundation. Served every framework.</p><a class="text-link" href="https://wiweck.substack.com/p/the-carbon-disclosure-tsunami-the" target="_blank" rel="noopener">Read insight <span class="arrow" aria-hidden="true">→</span></a></div></div><div class="journal-row"><time>25 Feb 2026</time><div><h3><a class="journal-row-link" href="https://wiweck.substack.com/p/the-carbon-disclosure-tsunami-cbam-5c2" target="_blank" rel="noopener">The Carbon Disclosure Tsunami: Where Measurement, Materiality, and Verification Break Down</a></h3><p>Where backward-looking metrics, incompatible materiality definitions, and fragmented verification break down under four-framework pressure.</p><a class="text-link" href="https://wiweck.substack.com/p/the-carbon-disclosure-tsunami-cbam-5c2" target="_blank" rel="noopener">Read insight <span class="arrow" aria-hidden="true">→</span></a></div></div><div class="journal-row"><time>16 Feb 2026</time><div><h3><a class="journal-row-link" href="https://wiweck.substack.com/p/the-carbon-disclosure-tsunami-cbam-e45" target="_blank" rel="noopener">The Carbon Disclosure Tsunami: How TCFD, CSRD, and Banking Demands Break BRSR&#039;s Architecture</a></h3><p>TCFD demands scenario analysis. CSRD requires double materiality. RBI wants financed emissions. BRSR wasn&#039;t built for any of them. And now they&#039;re all hitting Indian companies at the same time.</p><a class="text-link" href="https://wiweck.substack.com/p/the-carbon-disclosure-tsunami-cbam-e45" target="_blank" rel="noopener">Read insight <span class="arrow" aria-hidden="true">→</span></a></div></div><div class="journal-row"><time>10 Feb 2026</time><div><h3><a class="journal-row-link" href="https://wiweck.substack.com/p/the-carbon-disclosure-tsunami-cbam" target="_blank" rel="noopener">The Carbon Disclosure Tsunami: What BRSR Principle 6 Actually Built (And What It Can&#039;t Do)</a></h3><p>As EU CBAM enters its definitive phase, Indian exporters face a critical data architecture gap. Discover why current BRSR disclosures cover only 40% of requirements and how to navigate the 67% cost overestimation paradox</p><a class="text-link" href="https://wiweck.substack.com/p/the-carbon-disclosure-tsunami-cbam" target="_blank" rel="noopener">Read insight <span class="arrow" aria-hidden="true">→</span></a></div></div><div class="journal-row"><time>14 Dec 2025</time><div><h3><a class="journal-row-link" href="https://wiweck.substack.com/p/the-48-hour-work-week-illusion" target="_blank" rel="noopener">The 48-Hour Work Week Illusion</a></h3><p>Influencers are selling you a dream that India&#039;s work culture will never allow</p><a class="text-link" href="https://wiweck.substack.com/p/the-48-hour-work-week-illusion" target="_blank" rel="noopener">Read insight <span class="arrow" aria-hidden="true">→</span></a></div></div><div class="journal-row"><time>5 Dec 2025</time><div><h3><a class="journal-row-link" href="https://wiweck.substack.com/p/two-years-to-prepare-two-days-to" target="_blank" rel="noopener">Two Years to Prepare, Two Days to Surrender: India&#039;s Aviation Safety Compromise</a></h3><p>How India&#039;s largest airline turned its operational failures into government policy reversal, and what this crisis reveals about the declining obligation of worker safety and public welfare regulations</p><a class="text-link" href="https://wiweck.substack.com/p/two-years-to-prepare-two-days-to" target="_blank" rel="noopener">Read insight <span class="arrow" aria-hidden="true">→</span></a></div></div><div class="journal-row"><time>30 Apr 2025</time><div><h3><a class="journal-row-link" href="https://wiweck.substack.com/p/28-trillion-in-climate-damage-why" target="_blank" rel="noopener">$28 Trillion in Climate Damage, Why Blaming Corporations Won’t Save Us</a></h3><p>Why realistic energy transition beats blame games, and how corporations, consumers, and policymakers can drive meaningful climate progress together</p><a class="text-link" href="https://wiweck.substack.com/p/28-trillion-in-climate-damage-why" target="_blank" rel="noopener">Read insight <span class="arrow" aria-hidden="true">→</span></a></div></div><!-- substack:end --></div>
 <noscript><p><a class="text-link" href="https://wiweck.substack.com/" rel="noopener" target="_blank">Read all insights on Substack <span aria-hidden="true" class="arrow">→</span></a></p></noscript>
 <p class="journal-more"><a class="text-link" href="https://wiweck.substack.com/" rel="noopener" target="_blank">Read the full archive on Substack <span aria-hidden="true" class="arrow">→</span></a></p>
 </div>
@@ -1324,15 +1353,13 @@
       function loadSubstackPosts() {
         var container = document.getElementById('substackJournal');
         if (!container) return;
-        fetch('https://wiweck.substack.com/api/v1/archive?sort=new&offset=0&limit=9', { mode: 'cors' })
+        fetch('substack.json', { cache: 'no-cache' })
           .then(function (response) {
-            if (!response.ok) throw new Error('Substack archive request failed');
+            if (!response.ok) throw new Error('Substack snapshot request failed');
             return response.json();
           })
-          .then(function (data) {
-            renderSubstackJournal(Array.isArray(data) ? data : (data && data.posts) || []);
-          })
-          .catch(loadViaProxy);
+          .then(function (data) { renderSubstackJournal(data); })
+          .catch(showSubstackFallback);
       }
 
       loadSubstackPosts();
@@ -1353,5 +1380,9 @@
       }
     }());
   </script>
+<script>
+/* Enquiry dialog: put focus on the first field when it opens, on every page */
+(function(){var d=document.getElementById('conversationDialog');if(!d)return;document.querySelectorAll('[data-open-conversation]').forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){var f=document.getElementById('conversationName');if(d.open&&f)f.focus();},30);});});}());
+</script>
 </body>
 </html>

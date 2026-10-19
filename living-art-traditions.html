@@ -651,6 +651,44 @@ a.work-card:hover{transform:translateY(-3px);}
 .privacy-note{margin:12px 0 0;color:var(--slate);font-size:0.82rem;}
 .btn-block{width:100%;}
 @media (max-width:760px){.dialog-grid{grid-template-columns:1fr;}}
+
+/* Enquiry dialog: one design across the site */
+#conversationDialog.conversation-dialog{width:min(calc(100% - 32px),880px);max-width:880px;max-height:calc(100dvh - 32px);margin:auto;padding:0;border:0;border-radius:20px;background:var(--white,#fff);box-shadow:0 30px 90px rgba(4,31,66,0.42);overflow:auto;}
+#conversationDialog.conversation-dialog::backdrop{background:rgba(4,31,66,0.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+#conversationDialog .dialog-grid{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);min-height:0;}
+#conversationDialog .dialog-aside{display:flex;flex-direction:column;gap:14px;padding:clamp(30px,5vw,48px);background:linear-gradient(160deg,var(--navy,#062E5F) 0%,var(--navy-deep,#041F42) 78%);color:#fff;}
+#conversationDialog .dialog-eyebrow{display:block;margin:0;color:rgba(255,255,255,0.62);font-size:0.74rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;}
+#conversationDialog .dialog-aside h2{margin:0;color:#fff;font-family:"Merriweather",Georgia,serif;font-size:clamp(1.6rem,3.4vw,2.15rem);line-height:1.15;letter-spacing:-0.02em;max-width:none;}
+#conversationDialog .dialog-intro{margin:0;color:rgba(255,255,255,0.78);font-size:1rem;line-height:1.6;max-width:none;}
+#conversationDialog .dialog-contact{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:auto;padding-top:22px;border-top:1px solid rgba(255,255,255,0.18);}
+#conversationDialog .dialog-contact a{width:fit-content;color:#fff;font-weight:600;font-size:1rem;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.35);overflow-wrap:anywhere;transition:border-color 0.18s ease;}
+#conversationDialog .dialog-contact a:hover{border-color:#fff;}
+#conversationDialog .dialog-aside a:focus-visible{outline:3px solid rgba(255,255,255,0.75);outline-offset:3px;}
+#conversationDialog .dialog-formwrap{position:relative;padding:clamp(30px,5vw,48px);background:#fff;}
+#conversationDialog .dialog-close{position:absolute;top:14px;right:14px;width:42px;height:42px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:var(--mist,#F4F7FA);color:var(--navy-deep,#041F42);font-size:1.5rem;line-height:1;cursor:pointer;transition:background 0.18s ease;}
+#conversationDialog .dialog-close:hover{background:var(--blue-soft,#E8F0FA);}
+#conversationDialog form{margin:0;}
+#conversationDialog .form-row{margin:0 0 17px;}
+#conversationDialog .form-row label{display:block;margin:0 0 7px;color:var(--navy-deep,#041F42);font-size:1rem;font-weight:700;}
+#conversationDialog .form-control{display:block;width:100%;min-height:50px;padding:11px 13px;border:1px solid rgba(6,46,95,0.28);border-radius:10px;background:#fff;color:var(--ink,#1F2A37);font:inherit;font-size:1rem;box-sizing:border-box;}
+#conversationDialog textarea.form-control{min-height:110px;resize:vertical;}
+#conversationDialog .form-control:focus{border-color:var(--logo-blue,#074A96);outline:3px solid rgba(7,74,150,0.18);outline-offset:0;}
+#conversationDialog .field-error{min-height:18px;margin:5px 0 0;color:#8A1C1C;font-size:0.82rem;}
+#conversationDialog .btn-block{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;}
+#conversationDialog .form-status{min-height:22px;margin:14px 0 0;color:var(--navy,#062E5F);font-weight:600;}
+#conversationDialog .privacy-note{margin:12px 0 0;color:var(--slate,#4A5868);font-size:0.82rem;max-width:none;}
+@media (max-width:760px){
+#conversationDialog .dialog-grid{grid-template-columns:1fr;}
+#conversationDialog .dialog-aside{gap:10px;padding:26px 22px;}
+#conversationDialog .dialog-aside h2{font-size:1.5rem;}
+#conversationDialog .dialog-contact{margin-top:6px;padding-top:14px;}
+#conversationDialog .dialog-formwrap{padding:26px 22px;}
+#conversationDialog .dialog-grid{position:relative;}
+#conversationDialog .dialog-formwrap{position:static;}
+#conversationDialog .dialog-close{top:12px;right:12px;background:rgba(255,255,255,0.14);color:#fff;}
+#conversationDialog .dialog-close:hover{background:rgba(255,255,255,0.24);}
+#conversationDialog .dialog-close:focus-visible{outline:3px solid rgba(255,255,255,0.75);outline-offset:2px;}
+}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&amp;text=KalaAnchl&amp;display=swap">
 </head>
@@ -1122,6 +1160,10 @@ function rUpd(){rb[0].disabled=rail.scrollLeft<=2;rb[1].disabled=rail.scrollLeft
 rb.forEach(function(b){b.addEventListener('click',function(){rail.scrollBy({left:parseInt(b.dataset.rail,10)*rail.clientWidth*0.8,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});});
 rail.addEventListener('scroll',function(){requestAnimationFrame(rUpd);},{passive:true});addEventListener('resize',rUpd);rUpd();}
 })();
+</script>
+<script>
+/* Enquiry dialog: put focus on the first field when it opens, on every page */
+(function(){var d=document.getElementById('conversationDialog');if(!d)return;document.querySelectorAll('[data-open-conversation]').forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){var f=document.getElementById('conversationName');if(d.open&&f)f.focus();},30);});});}());
 </script>
 </body>
 </html>
